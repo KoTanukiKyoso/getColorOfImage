@@ -2,6 +2,8 @@ import cv2
 import numpy as np
 from skimage import io
 from skimage import color
+import tkinter as tk
+from tkinter import filedialog
 
 colors = {
     "red": {
@@ -105,7 +107,46 @@ images = [
     'sample_imgs/12.jpg',
 ]
 
-for url in images:
-    print(url)
-    print(get_colors(url))
-    print('\n')
+# for url in images:
+#     print(url)
+#     print(get_colors(url))
+#     print('\n')
+#
+# print(color.deltaE_ciede2000(
+#     skimage_rgb2lab(np.array([24, 6, 20], np.uint8)),
+#     skimage_rgb2lab(np.array([41, 0, 34], np.uint8))))
+
+
+class Application(tk.Frame):
+    def __init__(self, master=None):
+        super().__init__(master)
+        self.master = master
+        self.pack()
+        self.create_widgets()
+
+    def create_widgets(self):
+        self.selectDir = tk.Button(self, text="画像ファイル（jpg,png）を選択", command=self.selectDirectory)
+        self.selectDir.pack(side="top")
+
+        self.dirPath = tk.StringVar()
+        self.dirPath.set("選択画像：")
+        self.Static1 = tk.Label(self, textvariable=self.dirPath)
+        self.Static1.pack()
+
+        self.colors = tk.StringVar()
+        self.colors.set("含まれる色要素：")
+        self.Static2 = tk.Label(self, textvariable=self.colors)
+        self.Static2.pack()
+
+    def selectDirectory(self):
+        fld = filedialog.askopenfilename()
+        self.dirPath.set("選択画像：" + fld)
+        self.colors.set("含まれる色要素：" + get_colors(fld))
+
+
+root = tk.Tk()
+app = Application(master=root)
+root.title(u"サハスラ")
+root.geometry("400x300")
+
+app.mainloop()
