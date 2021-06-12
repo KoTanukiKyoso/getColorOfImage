@@ -32,6 +32,7 @@ colors = {
         "name": "purple", "ja": "紫",
         "r": 128, "g": 0, "b": 128,
     },
+    # 水色　等検証
     "black": {
         "name": "black", "ja": "黒",
         "r": 0, "g": 0, "b": 0,
@@ -71,14 +72,14 @@ def get_colors(_url):
     # dominant = palette[np.argmax(counts)]
     color_list = {}
     for _color in palette:
-        print(str(round(_color[0])) + "," + str(round(_color[1]))
-              + "," + str(round(_color[2])))
+        # print(str(round(_color[0])) + "," + str(round(_color[1]))
+        #       + "," + str(round(_color[2])))
         for cs in colors.values():
             color1 = np.array([cs["r"], cs["g"], cs["b"]], np.uint8)
             color2 = np.array([_color[0], _color[1], _color[2]], np.uint8)
             dif = compare_color(color1, color2)
-            if dif < 25:
-                print(_url + ":" + cs["ja"] + ":" + str(dif))
+            if dif < 24:
+                # print(_url + ":" + cs["ja"] + ":" + str(dif))
                 color_list[cs["ja"]] = cs["ja"]
 
     _list = ""
@@ -89,9 +90,9 @@ def get_colors(_url):
 
 
 images = [
-    'sample_imgs/1.jpg',
+    # 'sample_imgs/1.jpg',
     'sample_imgs/2.png',
-    'sample_imgs/3.jpg',
+    # 'sample_imgs/3.jpg',
     'sample_imgs/3.png',
     'sample_imgs/4.jpg',
     'sample_imgs/5.jpg',
