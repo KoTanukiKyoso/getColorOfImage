@@ -7,44 +7,44 @@ from tkinter import filedialog
 
 colors = {
     "red": {
-        "name": "red", "ja": "赤",
+        "name": "red", "ja": u"赤",
         "r": 255, "g": 0, "b": 0,
     },
     "yellow": {
-        "name": "yellow", "ja": "黄",
+        "name": "yellow", "ja": u"黄",
         "r": 255, "g": 255, "b": 0,
     },
     "orange": {
-        "name": "orange", "ja": "橙",
+        "name": "orange", "ja": u"橙",
         "r": 255, "g": 165, "b": 0,
     },
     "blue": {
-        "name": "blue", "ja": "青",
+        "name": "blue", "ja": u"青",
         "r": 0, "g": 0, "b": 255,
     },
     "green": {
-        "name": "green", "ja": "緑",
+        "name": "green", "ja": u"緑",
         "r": 0, "g": 128, "b": 0,
     },
-    "indigo": {
-        "name": "indigo", "ja": "藍",
-        "r": 22, "g": 94, "b": 131,
+    "indigoBlue": {
+        "name": "indigoBlue", "ja": u"藍",
+        "r": 4, "g": 60, "b": 120,
     },
     "purple": {
-        "name": "purple", "ja": "紫",
+        "name": "purple", "ja": u"紫",
         "r": 128, "g": 0, "b": 128,
     },
     # 水色　等検証
     "black": {
-        "name": "black", "ja": "黒",
+        "name": "black", "ja": u"黒",
         "r": 0, "g": 0, "b": 0,
     },
     "white": {
-        "name": "white", "ja": "白",
+        "name": "white", "ja": u"白",
         "r": 255, "g": 255, "b": 255,
     },
     "grey": {
-        "name": "grey", "ja": "灰",
+        "name": "grey", "ja": u"灰",
         "r": 128, "g": 128, "b": 128,
     },
 }
@@ -91,32 +91,6 @@ def get_colors(_url):
     return _list
 
 
-images = [
-    # 'sample_imgs/1.jpg',
-    'sample_imgs/2.png',
-    # 'sample_imgs/3.jpg',
-    'sample_imgs/3.png',
-    'sample_imgs/4.jpg',
-    'sample_imgs/5.jpg',
-    'sample_imgs/6.jpg',
-    'sample_imgs/7.jpg',
-    'sample_imgs/8.jpg',
-    'sample_imgs/9.jpg',
-    'sample_imgs/10.jpg',
-    'sample_imgs/11.jpg',
-    'sample_imgs/12.jpg',
-]
-
-# for url in images:
-#     print(url)
-#     print(get_colors(url))
-#     print('\n')
-#
-# print(color.deltaE_ciede2000(
-#     skimage_rgb2lab(np.array([24, 6, 20], np.uint8)),
-#     skimage_rgb2lab(np.array([41, 0, 34], np.uint8))))
-
-
 class Application(tk.Frame):
     def __init__(self, master=None):
         super().__init__(master)
@@ -125,23 +99,23 @@ class Application(tk.Frame):
         self.create_widgets()
 
     def create_widgets(self):
-        self.selectDir = tk.Button(self, text="画像ファイル（jpg,png）を選択", command=self.selectDirectory)
+        self.selectDir = tk.Button(self, text=u"画像ファイル（jpg,png）を選択", command=self.selectDirectory)
         self.selectDir.pack(side="top")
 
         self.dirPath = tk.StringVar()
-        self.dirPath.set("選択画像：")
+        self.dirPath.set(u"選択画像：")
         self.Static1 = tk.Label(self, textvariable=self.dirPath)
         self.Static1.pack()
 
         self.colors = tk.StringVar()
-        self.colors.set("含まれる色要素：")
+        self.colors.set(u"含まれる色要素：")
         self.Static2 = tk.Label(self, textvariable=self.colors)
         self.Static2.pack()
 
     def selectDirectory(self):
         fld = filedialog.askopenfilename()
-        self.dirPath.set("選択画像：" + fld)
-        self.colors.set("含まれる色要素：" + get_colors(fld))
+        self.dirPath.set(u"選択画像：" + fld)
+        self.colors.set(u"含まれる色要素：" + get_colors(fld))
 
 
 root = tk.Tk()
